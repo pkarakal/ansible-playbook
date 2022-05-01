@@ -1,0 +1,22 @@
+- name: Add the flathub flatpak repository remote to the user installation
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
+
+- name: Add the Fedora flatpak repository to the user installation
+  become: true
+  community.general.flatpak_remote:
+    name: fedora
+    state: present
+    flatpakrepo_url: oci+https://registry.fedoraproject.org
+    method: system
+
+- name: Install flatpaks from Flathub
+  flatpak:
+   remote: flathub
+   name: "{{ fedora_flatpak_packages | join(' ') }}"
+   state: present
+   method: user
+

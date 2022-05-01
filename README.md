@@ -1,6 +1,6 @@
 # ansible-playbook
 
-This is an ansbile playbook created to automate and bootstrap my Fedora workstation. Some of the features needed are installing all necessary packages, installing NVIDIA drivers from `negativo17` repository, recovering backups created using `Timeshift` and installing development tools
+This is an ansible playbook created to automate and bootstrap my Fedora workstation. Some of the features needed are installing all necessary packages, installing NVIDIA drivers from `rpmfusion` repository, recovering backups created using `Timeshift` and installing development tools
 
 ## Prerequisites
 *  Git

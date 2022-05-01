@@ -1,0 +1,11 @@
+- name: Install dnf-plugin-core
+  become: true
+  dnf:
+    name: dnf-plugins-core
+    state: latest
+
+- name: Install flatpak
+  become: true
+  dnf:
+    name: flatpak
+    state: latest

@@ -1,0 +1,10 @@
+- name: Fail if distribution is not fedora
+  fail:
+    msg: "You need to run Fedora to run this playbook"
+  when: ansible_facts['distribution'] != "Fedora"
+
+- name: Fail if running on Ansible < 2.7.1
+  fail:
+    msg: "You are running on Ansible {{ ansible_version.string }}, which is not supported."
+  when:
+    - "(ansible_version.major < 2) or (ansible_version.major == 2 and ansible_version.minor < 7) or (ansible_version.major == 2 and ansible_version.minor == 7 and ansible_version.revision < 1)"

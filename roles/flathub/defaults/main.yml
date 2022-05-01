@@ -1,0 +1,10 @@
+---
+fedora_flatpak_packages:
+  - com.discordapp.Discord
+  - com.getpostman.Postman
+  - com.github.tchx84.Flatseal
+  - com.spotify.Client
+  - com.leinardi.gwe
+  - de.haeckerfelix.Fragments
+  - org.gnome.Fractal
+  - org.signal.Signal

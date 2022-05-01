@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  tags: always
+  become: true
+  pre_tasks:
+    - name: Update all packages
+      tags: always
+      dnf:
+        name: "*"
+        state: latest
+
+- hosts: all
+  tags: always
+  roles:
+    - checks
+    - dnf_repos
+    - devtools
+    - flathub
