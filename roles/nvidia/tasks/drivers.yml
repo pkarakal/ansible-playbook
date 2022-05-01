@@ -1,0 +1,34 @@
+- name: Check if RPMFusion non free repository is installed
+  stat:
+    path: /etc/yum.repos.d/rpmfusion-nonfree.repo
+  register: rpmfusion
+  tags:
+    - nvidia
+    - base
+
+- name: Fail if RPMFusion non free repository is not installed
+  fail:
+    msg: "RPMFusion non free repository seems not to be installed. Either rerun the playbook or enabled it manually."
+  when: not rpmfusion.stat.exists
+
+
+- name: Install nvidia drivers
+  tags:
+    - nvidia
+    - base
+  dnf:
+    name: "{{ fedora_nvidia_drivers | map('quote') | list }}"
+    state: latest
+
+- name: Check for NVIDIA kmod version
+  shell: modinfo -F version nvidia
+  register: modversion
+  ignore_errors: True
+  tags:
+    - nvidia
+    - base
+
+- name: Fail if couldn't find NVIDIA kmod
+  fail:
+    msg: "Couldn't find the NVIDIA kmod. Something must have gone wrong."
+  when: (not modversion.stdout_lines[0] is match("\d{3}.\d{2}.\d{2}")) or (modversion.stderr_lines is match("Module alias nvidia not found"))

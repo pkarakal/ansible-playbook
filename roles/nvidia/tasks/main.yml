@@ -1,0 +1,12 @@
+- import_tasks: "{{ role_path}}/tasks/drivers.yml"
+  become: true
+  tags:
+    - nvidia
+    - base
+
+- import_tasks: "{{ role_path }}/tasks/cuda.yml"
+  become: true
+  tags:
+    - cuda
+    - nvidia
+    - base

@@ -39,7 +39,20 @@
 - name: Install CUDA repository
   become: true
   command:
-    cmd: dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/fedora35/x86_64/cuda-fedora35.repo
+    cmd: "dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/fedora{{ ansible_distribution_major_version }}/x86_64/cuda-fedora{{ ansible_distribution_major_version }}.repo"
     warn: false
   args: 
-    creates: /etc/yum.repos.d/cuda-fedora35.repo
+    creates: "/etc/yum.repos.d/cuda-fedora{{ansible_distribution_major_version}}.repo"
+
+- name: Importing NVIDIA machine learning repository key
+  become: true
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://developer.download.nvidia.com/compute/machine-learning/repos/rhel8/x86_64/7fa2af80.pub
+
+- name: Install NVIDIA machine learning repository
+  become: true
+  dnf:
+    name: "https://developer.download.nvidia.com/compute/machine-learning/repos/rhel8/x86_64/nvidia-machine-learning-repo-rhel8-1.0.0-1.x86_64.rpm"
+    state: latest
+

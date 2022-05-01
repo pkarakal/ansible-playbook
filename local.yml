@@ -15,5 +15,6 @@
   roles:
     - checks
     - dnf_repos
-    - devtools
-    - flathub
+#    - devtools
+#    - flathub
+    - nvidia
