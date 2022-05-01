@@ -1,0 +1,24 @@
+- name: Check if cuda repository is installed
+  stat:
+    path: "/etc/yum.repos.d/cuda-fedora{{ ansible_distribution_major_version }}.repo"
+  register: cuda_repo
+
+- name: Fail if cuda repository is not installed
+  fail:
+     msg: "Cuda repository could not be found installed on your machine. Either rerun the playbook with the appropriate tags or install it manually"
+  when: not cuda_repo.stat.exists
+
+- name: Check if NVIDIA machine learning repository is installed
+  stat:
+    path: "/etc/yum.repos.d/nvidia-machine-learning.repo"
+  register: machine_learning_repo
+
+- name: Fail if NVIDIA machine learning repository is not installed
+  fail:
+     msg: "NVIDIA machine learning repository could not be found installed on your machine. Either rerun the playbook with the appropriate tags or install it manually"
+  when: not machine_learning_repo.stat.exists
+
+- name: Install cuda packages
+  dnf:
+    name: "{{ fedora_cuda_packages | map('quote') | list }}"
+    state: latest

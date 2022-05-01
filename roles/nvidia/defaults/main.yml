@@ -1,0 +1,11 @@
+---
+fedora_nvidia_drivers:
+  - akmod-nvidia
+  - xorg-x11-drv-nvidia-cuda
+
+fedora_cuda_packages:
+  - cuda
+  - libcudnn8
+  - libcudnn8-devel
+  - libnccl
+  - libnccl-devel
