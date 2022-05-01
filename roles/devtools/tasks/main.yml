@@ -9,3 +9,15 @@
   dnf:
     name: flatpak
     state: latest
+
+- name: Install the 'Development tools' package group
+  become: true
+  dnf:
+    name: '@Development tools'
+    state: present
+
+- name: Install packages needed for development
+  become: true
+  dnf:
+    name: "{{ fedora_ansible_packages | map('quote') |list }}"
+    state: present
