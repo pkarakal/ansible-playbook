@@ -1,0 +1,11 @@
+- import_tasks: "{{ role_path }}/tasks/docker.yml"
+  become: true
+  tags:
+    - containers
+    - base
+
+- import_tasks: "{{ role_path }}/tasks/podman.yml"
+  become: true
+  tags:
+    - containers
+    - base

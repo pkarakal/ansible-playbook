@@ -1,0 +1,19 @@
+- name: Check if Docker repository is installed
+  stat:
+    path: "/etc/yum.repos.d/docker-ce.repo"
+  register: docker_repo
+
+- name: Fail if Dokcer repository is not installed
+  fail:
+     msg: "Docker repository could not be found installed on your machine. Either rerun the playbook with the appropriate tags or install it manually"
+  when: not docker_repo.stat.exists
+
+- name: Importing gpg key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://download.docker.com/linux/fedora/gpg
+
+- name: Install docker
+  dnf:
+    name: "{{ fedora_docker_packages | map('quote') | list }}"
+    state: latest

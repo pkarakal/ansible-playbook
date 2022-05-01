@@ -1,0 +1,14 @@
+---
+fedora_docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-compose-plugin
+  - runc
+
+fedora_podman_packages:
+  - podman
+  - podman-compose
+  - crun
+  - buildah
+  - skopeo
