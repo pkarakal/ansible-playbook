@@ -20,5 +20,6 @@
 #    - nvidia
 #    - containers
 #    - browsers
-    - applications
-    - gnome
+#    - applications
+#    - gnome
+    - virtualization
