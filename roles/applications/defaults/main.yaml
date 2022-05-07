@@ -1,0 +1,62 @@
+fedora_office_suite:
+  - libreoffice-calc
+  - libreoffice-core
+  - libreoffice-data
+  - libreoffice-draw
+  - libreoffice-emailmerge
+  - libreoffice-filters
+  - libreoffice-graphicfilter
+  - libreoffice-gtk3
+  - libreoffice-help-en
+  - libreoffice-impress
+  - libreoffice-langpack-en
+  - libreoffice-ogltrans
+  - libreoffice-opensymbol-fonts
+  - libreoffice-pdfimport
+  - libreoffice-pyuno
+  - libreoffice-ure
+  - libreoffice-ure-common
+  - libreoffice-writer
+  - libreoffice-x11
+  - libreoffice-xsltfilter
+
+
+fedora_misc_packages:
+  - loginized
+  - media-player-info
+  - mediawriter
+  - peek
+
+
+fedora_application_packages:
+  - audacity
+  - blender
+  - chessx
+  - fontconfig
+  - fontconfig-devel
+  - gimp
+  - gimp-devel
+  - gimp-devel-tools
+  - gimp-jxl-plugin
+  - gimp-libs
+  - kodi
+  - kodi-firewalld
+  - obs-studio
+  - obs-studio-libs
+  - pavucontrol
+  - remmina
+  - remmina-plugins-exec
+  - remmina-plugins-rdp
+  - remmina-plugins-secret
+  - remmina-plugins-vnc
+  - stockfish
+  - thunderbird
+  - thunderbird-librnp-rnp
+  - timeshift
+  - transmission
+  - transmission-common
+  - transmission-gtk
+  - vlc
+  - vlc-core
+  - wireshark
+  - wireshark-cli
