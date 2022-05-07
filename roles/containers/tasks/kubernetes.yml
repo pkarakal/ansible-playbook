@@ -1,0 +1,58 @@
+- name: Check if Kubernetes repository is installed
+  stat:
+    path: "/etc/yum.repos.d/kubernetes.repo"
+  register: k8s_repo
+
+- name: Install Kubernetes repository
+  shell: |
+    cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+    [kubernetes]
+    name=Kubernetes
+    baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+    enabled=1
+    gpgcheck=1
+    repo_gpgcheck=1
+    gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+    EOF
+  when: not k8s_repo.stat.exists
+
+- name: Check if Kubernetes repository is installed (after adding /etc/yum.repos.d/kubernetes.repo)
+  stat:
+    path: "/etc/yum.repos.d/kubernetes.repo"
+  register: k8s_repo_after_installation
+
+- name: Fail if Kubernetes repository is not installed
+  fail:
+     msg: "Kubernetes repository could not be found installed on your machine. Either rerun the playbook with the appropriate tags or install it manually"
+  when: not k8s_repo_after_installation.stat.exists
+
+- name: Install kubernetes
+  dnf:
+    name: "{{ fedora_k8s_packages | map('quote') | list }}"
+    state: latest
+
+- name: Download minikube rpm
+  shell: |
+    curl -Lo /tmp/minikube.rpm https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm 
+
+- name: Check if minikube rpm was downloaded successfully
+  stat:
+    path: "/tmp/minikube.rpm"
+  register: minikube_rpm
+
+- name: Fail if cannot find minikube file
+  fail:
+    msg: "Minikube RPM could not be found on your machine. Either rerun the playbook with the appropriate tags or install it manually"
+  when: not minikube_rpm.stat.exists
+
+
+- name: Install minikube rpm
+  dnf:
+    name: "/tmp/minikube.rpm"
+    disable_gpg_check: true
+    state: latest
+
+- name: Remove minikube rpm
+  file:
+    path: /tmp/minikube.rpm
+    state: absent

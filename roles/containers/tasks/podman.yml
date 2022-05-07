@@ -1,0 +1,4 @@
+- name: Install podman packages
+  dnf:
+    name: "{{ fedora_podman_packages | map('quote') | list }}"
+    state: present

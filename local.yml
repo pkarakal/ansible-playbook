@@ -17,4 +17,5 @@
     - dnf_repos
 #    - devtools
 #    - flathub
-    - nvidia
+#    - nvidia
+    - containers
