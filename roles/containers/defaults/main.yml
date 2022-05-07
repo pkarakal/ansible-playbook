@@ -12,3 +12,7 @@ fedora_podman_packages:
   - crun
   - buildah
   - skopeo
+
+fedora_k8s_packages:
+  - kubectl
+

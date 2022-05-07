@@ -9,3 +9,9 @@
   tags:
     - containers
     - base
+
+- import_tasks: "{{ role_path }}/tasks/kubernetes.yml"
+  become: true
+  tags:
+    - containers
+    - kubernetes
