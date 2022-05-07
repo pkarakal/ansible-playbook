@@ -18,4 +18,5 @@
 #    - devtools
 #    - flathub
 #    - nvidia
-    - containers
+#    - containers
+    - browsers

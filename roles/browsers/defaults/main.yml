@@ -1,0 +1,4 @@
+fedora_browsers:
+  - firefox
+  - chromium
+  - google-chrome-stable

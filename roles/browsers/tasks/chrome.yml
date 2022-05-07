@@ -1,0 +1,19 @@
+- name: Install fedora-workstation-repositories
+  dnf:
+    name: fedora-workstation-repositories
+    state: latest
+
+- name: Enable Chrome repository
+  command:
+    cmd: dnf config-manager --set-enabled google-chrome
+    warn: false
+
+- name: Check if Chrome repository is installed
+  stat:
+    path: "/etc/yum.repos.d/google-chrome.repo"
+  register: chrome_repo
+
+- name: Fail if Chrome repository is not installed
+  fail:
+    msg: "Chrome repository could not be found installed on your machine. Either rerun the playbook with the appropriate tags or install it manually"
+  when: not chrome_repo.stat.exists
