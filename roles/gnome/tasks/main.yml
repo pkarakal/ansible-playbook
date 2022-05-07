@@ -1,0 +1,19 @@
+- name: Install main gnome applications
+  tags:
+    - base
+    - gnome
+    - gnome-base
+  become: true
+  dnf:
+    name: "{{ fedora_gnome_applications | map('quote') | list }}"
+    state: latest
+
+- name: Install gnome development libraries and applications
+  tags:
+    - base
+    - gnome
+    - gnome-dev
+  become: true
+  dnf:
+    name: "{{ fedora_gnome_dev_packages | map('quote') | list }}"
+    state: latest

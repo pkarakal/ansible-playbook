@@ -1,0 +1,28 @@
+- name: Install libreoffice suite
+  tags:
+    - base
+    - applications
+    - libreoffice
+  become: true
+  dnf:
+    name: "{{ fedora_office_suite | map('quote') | list }}"
+    state: latest
+
+- name: Install applications
+  tags:
+    - base
+    - applications
+  become: true
+  dnf:
+    name: "{{ fedora_application_packages | map('quote') | list }}"
+    state: latest
+
+- name: Install miscellaneous packages
+  tags:
+    - base
+    - misc
+    - applications
+  become: true
+  dnf:
+    name: "{{ fedora_application_packages | map('quote') | list }}"
+    state: latest
