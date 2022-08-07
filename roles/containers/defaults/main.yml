@@ -12,6 +12,13 @@ fedora_podman_packages:
   - crun
   - buildah
   - skopeo
+  - toolbox
+  - conmon
+  - conntrack-tools
+  - container-selinux
+  - containernetworking-plugins
+  - bubblewrap
+  - slirp4netns
 
 fedora_k8s_packages:
   - kubectl
